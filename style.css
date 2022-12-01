@@ -12,3 +12,6 @@ html, body{
     color: red;
 }
 
+td> input[type='text']{
+    width: 25px
+}

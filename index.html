@@ -21,7 +21,7 @@
             <th scope="col">ILOŚĆ</th>
             <th scope="col">CENA</th>
             <th scope="col">SUMA</th>
-            <th scope="col"><!--<i class="bi bi-x-octagon">--></i></th>
+            <th scope="col">USUŃ</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
       </table>
 
       <h1 class="font-weight-light">Nowa pozycja</h1>
-
+      <form>
         <div class="form-group">
           <input type="text" class="form-control-sm mb-2 mr-sm-2" id="nameOfProduct" name="nameOfProduct" placeholder="Nazwa" required/>
         </div>
@@ -48,8 +48,9 @@
         <input type="number" class="form-control-sm mb-2 mr-sm-2" id="priceOfProduct" name="priceOfProduct" step="0.01" placeholder="Cena" required/>
         </div>
         <button id="btn" class="btn btn-primary mb-2">Submit</button>
-      
+      </form>
     </div>
+    
     <script type="module" src="receipt.js"></script>
   </body>
 
