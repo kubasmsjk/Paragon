@@ -11,7 +11,3 @@ html, body{
 .bi{
     color: red;
 }
-
-td> input[type='text']{
-    width: 25px
-}

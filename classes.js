@@ -5,21 +5,21 @@ export class Receipt{
         this._listOfProducts = [];
     }
 
-    get listOfProduct(){
+    get listOfProducts(){
         return this._listOfProducts;
     }
 
     checkIsProductOnList(Product){
-        var isProductOnList = this._listOfProducts.some(el => el.Name == Product.Name);
+        var isProductOnList = this.listOfProducts.some(el => el._name == Product._name);
         return isProductOnList;
     }
 
     addProduct(Product){
         if(!this.checkIsProductOnList(Product)){
-            this._listOfProducts.push(Product);
+            this.listOfProducts.push(Product);
         return true;
         }else{
-            alert("Jest na liście");
+            alert("Produkt jest umieszczony na paragonie, aby zmienić jego wartości kliknij w odpowiednią wartość");
             return false;
         }
     }
@@ -29,7 +29,7 @@ export class Receipt{
             let id = this._listOfProducts.indexOf(Product);
             this._listOfProducts.splice(id, 1);
         }else{
-            console.log("Brak produktu na liście");
+            alert("Produkt nie występuje na paragonie");
         }
     }
 }
