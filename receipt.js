@@ -2,6 +2,8 @@ import {Receipt, Product} from './classes.js';
 
 var receipt = new Receipt();
 var button = document.getElementById('btn');
+var upButton = document.getElementById('upBtn');
+var downButton = document.getElementById('downBtn');
 var sum = document.getElementById('sum');
 var table = document.getElementById('table').getElementsByTagName('tbody')[0];
 var icon = document.createElement('i');
@@ -64,9 +66,21 @@ function printRow(receipt){
     sum.innerHTML = parseInt(sum.textContent) + Math.floor((amount*price) *100) / 100 + " zł";
 }
 
+var index;
 function addClickEvent(row){
 
     row.addEventListener("click", function(event) {
+            
+            if(typeof index !== "undefined"){
+                table.rows[index].classList.toggle("selected");
+            }
+           
+           index = this.rowIndex - 1;
+           table.rows[index].classList.toggle("selected");
+    })
+
+    row.addEventListener("click", function(event) {
+
         if( event.target.id == 'bi' ){
             if (confirm("Czy na pewno chcesz usunąć produkt ")) {
                 receipt.deleteProduct(receipt.listOfProducts[row.id]);
@@ -79,6 +93,27 @@ function addClickEvent(row){
        
     })
 }
+upButton.addEventListener("click", function(event){
+    var rows = document.getElementById("table").getElementsByTagName('tbody')[0].children
+    var row = document.getElementsByClassName("selected").item('tr')
+    let parent = row.parentNode
+
+    if(index  >= 1){
+        parent.insertBefore(row,rows[index - 1]);
+        index--;
+    }
+})
+
+downButton.addEventListener("click", function(){
+    var rows = document.getElementById("table").getElementsByTagName('tbody')[0].children
+    var row = document.getElementsByClassName("selected").item('tr')
+    let parent = row.parentNode
+
+    if(index < rows.length - 2 ){
+        parent.insertBefore(rows[index + 1],rows[index]);
+        index++;
+    }
+})
 
 function edit(event,rowId){
     switch (event.target.id) {
@@ -165,6 +200,7 @@ function printArray(receipt){
 function suma(amount,price){
     return Math.floor((amount*price) *100) / 100
 }
+
 function saveToLocalStorage() {
     localStorage.setItem("receipt",JSON.stringify(receipt.listOfProducts));
     localStorage.setItem('rowNumber', rowNumber);
